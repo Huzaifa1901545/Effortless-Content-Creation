@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EFC</title>
+    <link rel="stylesheet" href="/css/create.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        function scrapeData() {
+            const url = document.getElementById('urlInput').value;
+            const htmlCheckbox = document.getElementById('htmlCheckbox').checked;
+            const cssCheckbox = document.getElementById('cssCheckbox').checked;
+            const javascriptCheckbox = document.getElementById('javascriptCheckbox').checked;
+            const responsiveCheckbox = document.getElementById('responsiveCheckbox').checked;
+            const generateHashtags = document.getElementById('hashtagCheckbox').checked;
+
+            fetch('/scrape', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ url, htmlCheckbox, cssCheckbox, javascriptCheckbox, responsiveCheckbox, generateHashtags })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Received data:', data); // Log received data
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = ''; // Clear previous results
+
+                // Hide download buttons initially
+                document.getElementById('image-download-buttons').style.display = 'none';
+                document.getElementById('video-download-buttons').style.display = 'none';
+
+                if (data.image) {
+                    const imgElement = document.createElement('img');
+                    imgElement.id = 'resultImage';
+                    imgElement.src = `data:image/jpeg;base64,${data.image}`;
+                    imgElement.style.maxWidth = '100%';
+                    resultDiv.appendChild(imgElement);
+
+                    document.getElementById('image-download-buttons').style.display = 'block';
+                } else if (data.video) {
+                    console.log('Video Base64 Length:', data.video.length); // Log video length
+                    console.log('Video Base64 Data:', data.video); // Log video data
+
+                    const videoElement = document.createElement('video');
+                    videoElement.id = 'resultVideo'; // Ensure the video element has the correct ID
+                    videoElement.src = `data:video/mp4;base64,${data.video}`;
+                    videoElement.autoplay = true;
+                    videoElement.controls = true;
+                    resultDiv.appendChild(videoElement);
+
+                    document.getElementById('video-download-buttons').style.display = 'block';
+                } else {
+                    alert('Error: ' + data.error);
+                }
+
+                if (data.hashtags.length > 0) {
+                    const hashtagDiv = document.createElement('div');
+                    hashtagDiv.id = 'hashtags';
+                    hashtagDiv.innerHTML = data.hashtags.map(hashtag => `<span class="hashtag">${hashtag}</span>`).join('');
+                    resultDiv.appendChild(hashtagDiv);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function downloadImage(buttonId) {
+            const img = document.getElementById('resultImage');
+            const link = document.createElement('a');
+            link.href = img.src;
+            link.download = `${buttonId}.jpg`;
+            link.click();
+        }
+
+        function downloadVideo(buttonId) {
+            const video = document.getElementById('resultVideo');
+            const link = document.createElement('a');
+            link.href = video.src;
+            link.download = `${buttonId}.mp4`;
+            link.click();
+        }
+
+        function selectSingleCheckbox(checkbox) {
+            const checkboxes = document.getElementsByClassName('single-checkbox');
+            for (let i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = false;
+            }
+            checkbox.checked = true;
+        }
+    </script>
+</head>
+<body>
+     <div class="big-wrapper light">
+        <img src="" alt="" class="shape" />
+        {{> navbar}}       
+        <div class="container2">
+            <div class="url-input-container">
+                <input type="url" id="urlInput" placeholder="Enter URL...">
+                <button class="btn-create" onclick="scrapeData()">Create</button>
+            </div>
+            <div class="checkbox-container">
+                <label><input type="checkbox" class="single-checkbox" id="htmlCheckbox" onclick="selectSingleCheckbox(this)">Web Scraped</label>
+                <label><input type="checkbox" class="single-checkbox" id="cssCheckbox" onclick="selectSingleCheckbox(this)">Generated Img</label>
+                <label><input type="checkbox" class="single-checkbox" id="javascriptCheckbox" onclick="selectSingleCheckbox(this)">Random Img</label>
+                <label><input type="checkbox" class="single-checkbox" id="responsiveCheckbox" onclick="selectSingleCheckbox(this)">Text Animated</label>
+            </div>
+            <label><input type="checkbox" id="hashtagCheckbox">Want to generate hashtags?</label>
+        </div>
+        <div class="result-container">
+            <div id="result"></div>
+            <div id="image-download-buttons" style="display: none;">
+                <button class="btn-download" onclick="downloadImage('facebook_image')">Download for <i class="fa-brands fa-facebook" style="color: #eceeee;"></i></button>
+                <button class="btn-download" onclick="downloadImage('twitter_image')">Download for <i class="fa-brands fa-twitter" style="color: #eceeee;"></i></button>
+                <button class="btn-download" onclick="downloadImage('instagram_image')">Download for <i class="fa-brands fa-instagram" style="color: #eceeee;"></i></button>
+            </div>
+            <div id="video-download-buttons" style="display: none;">
+                <button class="btn-download" onclick="downloadVideo('facebook_video')">Download for <i class="fa-brands fa-facebook" style="color: #eceeee;"></i></button>
+                <button class="btn-download" onclick="downloadVideo('twitter_video')">Download for <i class="fa-brands fa-twitter" style="color: #eceeee;"></i></button>
+                <button class="btn-download" onclick="downloadVideo('instagram_video')">Download for <i class="fa-brands fa-instagram" style="color: #eceeee;"></i></button>
+            </div>
+        </div>
+        <footer>
+            <p>EFC @ 2024 || All Rights Reserved.</p>
+        </footer>
+    </div>
+    <script src="/js/fyp.js"></script>
+</body>
+</html>

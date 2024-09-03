@@ -1,0 +1,43 @@
+<header>
+    <div id="nav" class="container">
+        <label class="logo">
+            EFC
+        </label>
+        <div class="links">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/tutorial">Guide</a></li>
+                <li><a href="/feedback">Feedback</a></li>
+                <li><a href="/privacypolicy">Privacy Policy</a></li>
+                {{#if isAuthenticated}}
+                    <li><a href="/logout" class="btn">Logout</a></li>
+                {{else}}
+                    <li><a href="/login" class="btn">Log in</a></li>
+                    <li><a href="/signup" class="btn">Sign up</a></li>
+                {{/if}}
+            </ul>
+        </div>
+
+        <div class="overlay"></div>
+        <div class="hamburger-menu" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <div class="menu">
+            <button class="close-menu">Close</button>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/tutorial">Guide</a></li>
+                <li><a href="/feedback">Feedback</a></li>
+                <li><a href="/privacypolicy">Privacy Policy</a></li>
+                {{#if isAuthenticated}}
+                    <li><a href="/logout" class="btn">Logout</a></li>
+                {{else}}
+                    <li><a href="/login" class="btn">Log in</a></li>
+                    <li><a href="/signup" class="btn">Sign up</a></li>
+                {{/if}}
+            </ul>
+        </div>
+    </div>
+</header>

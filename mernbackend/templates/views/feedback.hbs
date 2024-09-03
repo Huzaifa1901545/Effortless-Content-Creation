@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EFC</title>
+    <link rel="stylesheet" href="/css/feedback.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+
+<body>
+    <main>
+        <div class="big-wrapper light">
+            {{> navbar}}
+
+            <div class="cont">
+                <div class="left">
+                    <h3 class="heading">Get in Touch</h3>
+                    <p class="text">We are here for you how can we help you.</p>
+                    <form action="/submit-feedback" method="POST">
+                        <div class="inputBox">
+                            <input type="text" name="name" class="name" placeholder="Enter Your Name" required>
+                        </div>
+                        <div class="inputBox">
+                            <input type="email" name="email" class="email" placeholder="Enter Your Email Address" required>
+                        </div>
+                        <div class="inputBox">
+                            <textarea name="message" class="message" placeholder="Enter Your Message" required></textarea>
+                        </div>
+                        <div class="cta">
+                            <button type="submit" class="btn">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="right">
+                    <div class="illustration">
+                        <img src="/css/illustrtion-removebg-preview.png" alt="Illustration">
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-area">
+                <div class="container">
+                    <button class="toggle-btn">
+                <!-- <i class="far fa-moon"></i>
+                <i class="far fa-sun"></i> -->
+              </button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>EFC @ 2024 || All Rights Reserved.</p>
+        </footer>
+    </main>
+
+    <script src="/js/fyp.js"></script>
+</body>
+
+</html>

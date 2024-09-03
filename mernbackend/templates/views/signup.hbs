@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EFC</title>
+    <link rel="stylesheet" href="/css/loginsignup.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+
+</head>
+
+<body>
+    <main>
+        <div class="big-wrapper light">
+
+
+            {{> navbar}}
+
+
+            <div class=" bottom-area ">
+                <div class="container ">
+                    <button class="toggle-btn ">
+                <!-- <i class="far fa-moon "></i>
+                <i class="far fa-sun "></i> -->
+              </button>
+                </div>
+            </div>
+            <div class="home" id="home">
+                <div class="container2">
+                    <div class="items">
+                        <div class="item">
+                            <div class="content">
+                                <h1>Sign Up And Start Creating For Free</h1>
+                                <form action="/signup" method="POST">
+                                    <div class="line">
+                                        <label for="email">Name</label>
+                                        <div class="field">
+                                            <input type="text" class="input" id="name" name="personname" placeholder="Name" required>
+
+                                        </div>
+                                    </div>
+                                    <div class="line">
+                                        <label for="email">Email</label>
+                                        <div class="field">
+                                            <input type="text" class="input" id="email" name="email" placeholder="Email" required>
+
+                                        </div>
+                                    </div>
+                                    <div class="line">
+                                        <label for="email">Password</label>
+                                        <div class="field">
+                                            <input type="text" class="input" id="password" name="password" placeholder="Pasword" required>
+                                            <span class="icon">display</span>
+                                        </div>
+                                    </div>
+                                     <div class="line">
+                                        <label for="email">Confirm Password</label>
+                                        <div class="field">
+                                            <input type="text" class="input" id="password" name="confirmpassword" placeholder="Pasword" required>
+                                            <span class="icon">display</span>
+                                        </div>
+                                    </div>
+                                    <!-- <a href="#" class="forgot">
+                                        Forgot your password ?
+                                    </a> -->
+
+                                    <div class="btns">
+                                        <button type="submit" value="Register" id="submit" class="btn-login">Sign up</button>
+                                    </div>
+                                </form>
+
+                                <div class="or">
+                                    <span></span>
+                                </div>
+
+                                <div class="terms">
+                                    <p>By cliking Continue, you agree to EFC
+                                        <a href="/privacypolicy">Privacy Policy </a>, and
+                                        <a href="/privacypolicy">Cookie Policy</a>
+                                    </p>
+                                </div>
+
+                                <!-- <button class="btn-google">
+                                    <img src="/style/google.png" alt="" srcset="" height="30">
+                                    <span>Continue with Google</span>
+                                </button> -->
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="image">
+                                <img src="/css/bg.png" alt="" srcset="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>EFC @ 2024 || All Rights Reserved.</p>
+        </footer>
+
+    </main>
+
+    <script src="/js/fyp.js"></script>
+</body>
+
+</html>
